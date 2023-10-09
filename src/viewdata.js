@@ -1,5 +1,6 @@
 import React,{useEffect , useState} from 'react';
 import HeaderPage from './headermenu';
+import MainLayout from './mainlayout';
 
 function Viewdata  ()  {
  const [data ,setData] = useState([]) 
@@ -56,6 +57,7 @@ function Viewdata  ()  {
       
         
   return (
+    <MainLayout>
     <div>
          <div style={containerStyle}  class="bgcolor">
       
@@ -76,9 +78,9 @@ function Viewdata  ()  {
         </thead>
         <tbody>
 
-         {data.map((data, i) =>(
+         {data.slice().reverse().map((data, i) =>(
            <tr key={i}>
-           <td style={tdStyle}>{data.id}</td>
+           <td style={tdStyle}>{i+1}</td>
            <td style={tdStyle}>{data.Username}</td>
            <td style={tdStyle}>{data.Password}</td>
            <td style={tdStyle}>{data.email}</td>
@@ -98,6 +100,7 @@ function Viewdata  ()  {
       Copyrights &copy;{year.getFullYear()}
       </div>
     </div>
+    </MainLayout>
   )
 }
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import HeaderPage from './headermenu';
 import axios from 'axios';
+import MainLayout from './mainlayout';
 
-function Edit({ current, lists, setList, handleUpdate }) {
+function Edit({ current, lists, setList, handleUpdate, serialNumber }) {
   const handleInput = (e) => {
     const newList = lists.map((li) =>
       li.id === current.id ? { ...li, [e.target.name]: e.target.value } : li
@@ -28,7 +29,7 @@ function Edit({ current, lists, setList, handleUpdate }) {
 
   return (
     <tr>
-      <td>{current.id}</td>
+      <td>{serialNumber}</td> {/* Display serial number or ID number */}
       <td>
         <input type="text" name="Username" onChange={handleInput} value={current.Username} style={inputStyle} />
       </td>
@@ -117,52 +118,55 @@ function Viewdata() {
   const year = new Date();
 
   return (
-    <div>
-      <div style={containerStyle} className="bgcolor">
-        <HeaderPage />
-      </div>
+    <MainLayout>
+      <div>
+        <div style={containerStyle} className="bgcolor">
+          <HeaderPage />
+        </div>
 
-      <table style={tbl} className="blur">
-        <thead>
-          <tr>
-            <th style={thStyle}>Sl.no</th>
-            <th style={thStyle}>Username</th>
-            <th style={thStyle}>Password</th>
-            <th style={thStyle}>Email</th>
-            <th style={thStyle}>Mobile number</th>
-            <th style={thStyle}>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {lists.map((current) => (
-            updateState === current.id ? (
-              <Edit
-                key={current.id}
-                current={current}
-                lists={lists}
-                setList={setList}
-                handleUpdate={handleUpdate}
-              />
-            ) : (
-              <tr key={current.id}>
-                <td style={tdStyle}>{current.id}</td>
-                <td style={tdStyle}>{current.Username}</td>
-                <td style={tdStyle}>{current.Password}</td>
-                <td style={tdStyle}>{current.email}</td>
-                <td style={tdStyle}>{current.number}</td>
-                <td>
-                  <button style={btnStyle} onClick={() => handleEdit(current.id)}>Edit</button>
-                </td>
-              </tr>
-            )
-          ))}
-        </tbody>
-      </table>
+        <table style={tbl} className="blur">
+          <thead>
+            <tr>
+              <th style={thStyle}>Sl.no</th>
+              <th style={thStyle}>Username</th>
+              <th style={thStyle}>Password</th>
+              <th style={thStyle}>Email</th>
+              <th style={thStyle}>Mobile number</th>
+              <th style={thStyle}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {lists.slice().reverse().map((current , index) => (
+              updateState === current.id ? (
+                <Edit
+                  key={current.id}
+                  current={current}
+                  lists={lists}
+                  setList={setList}
+                  handleUpdate={handleUpdate}
+                  serialNumber={index + 1} // Display serial number when editing
+                />
+              ) : (
+                <tr key={current.id}>
+                  <td style={tdStyle}>{index + 1}</td> {/* Display regular serial number */}
+                  <td style={tdStyle}>{current.Username}</td>
+                  <td style={tdStyle}>{current.Password}</td>
+                  <td style={tdStyle}>{current.email}</td>
+                  <td style={tdStyle}>{current.number}</td>
+                  <td>
+                    <button style={btnStyle} onClick={() => handleEdit(current.id)}>Edit</button>
+                  </td>
+                </tr>
+              )
+            ))}
+          </tbody>
+        </table>
 
-      <div style={footerStyle}>
-      Copyrights &copy;{year.getFullYear()}
+        <div style={footerStyle}>
+          Copyrights &copy;{year.getFullYear()}
+        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }
 

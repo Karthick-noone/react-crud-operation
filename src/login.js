@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import myimages from './imgs/logo192.png';
 import axios from 'axios';
 import './css/style.css'
+import MainLayout from './mainlayout';
 
 function Loginpage() {
   const [email, setEmail] = useState('');
@@ -69,6 +70,7 @@ function Loginpage() {
      
       const year=new Date();
   return (
+    <MainLayout>
     <div>
     <div style={containerStyle}  class="bgcolor">
     <HeaderPage />
@@ -104,6 +106,7 @@ function Loginpage() {
       </div>
       
       </div>
+      </MainLayout>
     
   )
 }

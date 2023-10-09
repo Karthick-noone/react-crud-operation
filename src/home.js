@@ -1,7 +1,8 @@
 import React from 'react';
 import HeaderPage from './headermenu';
 import myimages from './imgs/logo192.png';
-
+import MainLayout from './mainlayout';
+import backgroundImg from './img/8.jpg';
 
 function HomePage() {
   const containerStyle = {
@@ -11,6 +12,9 @@ function HomePage() {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '20px',
+    backgroundImage: `url(${backgroundImg})`,
+    backgroundSize: 'cover',
+    backgroundAttachment:'fixed'
   };
 
   const headerStyle = {
@@ -22,20 +26,18 @@ function HomePage() {
     height: 'auto',
     display: 'block', // Ensure the image is a block-level element
     margin: '0 auto',
-    marginTop:'100px' // Center the image horizontally
+    marginTop: '100px', // Center the image horizontally
   };
-  
 
   const descriptionStyle = {
     textAlign: 'center',
     margin: '20px 0',
+    fontSize:'20px',
   };
-
- 
 
   const footerStyle = {
     backgroundColor: '#333',
-    color: '#fff',
+    color: 'white',
     height: '60px',
     width: '100%', // Set the width to 100%
     position: 'fixed', // Fixed position to stick to the bottom
@@ -49,23 +51,24 @@ function HomePage() {
   const year = new Date();
 
   return (
-    <div style={containerStyle}>
-      <HeaderPage style={headerStyle} />
-      <div>
-        <img src={myimages} alt="logo" style={imageStyle} />
-        <div style={descriptionStyle}>
-          <h1 style={{ fontSize: '24px' }}>My Home Page</h1>
-          <p>
-            Welcome to my website. This is a simple example of a responsive
-            homepage.
-          </p>
+    <MainLayout>
+      <div style={containerStyle}>
+        <HeaderPage style={headerStyle} />
+        <div>
+          <img src={myimages} alt="logo" style={imageStyle} />
+          <div style={descriptionStyle}>
+            <h1 style={{ fontSize: '24px' }}>My Home Page</h1>
+            <b>
+              Welcome to my react website. This is a simple example of a react
+              homepage.
+            </b>
+          </div>
+        </div>
+        <div style={footerStyle}>
+          Copyrights &copy;{year.getFullYear()}
         </div>
       </div>
-     
-      <div style={footerStyle}>
-      Copyrights &copy;{year.getFullYear()}
-      </div>
-    </div>
+    </MainLayout>
   );
 }
 

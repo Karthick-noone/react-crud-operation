@@ -6,6 +6,7 @@ import image3 from './imgs/face10.jpg';
 import image4 from './imgs/face16.jpg';
 import image5 from './imgs/suriyas.jpg';
 import image6 from './imgs/s.jpg';
+import MainLayout from './mainlayout';
 
 function Gallery ()  {
     const containerStyle = {
@@ -37,6 +38,7 @@ function Gallery ()  {
         paddingLeft: '27%'
       };
   return (
+    <MainLayout>
     <div>
       <div style={containerStyle}  class="bgcolor">
       <HeaderPage />
@@ -61,6 +63,7 @@ function Gallery ()  {
       Copyrights &copy;{year.getFullYear()}
       </div>
     </div>
+    </MainLayout>
   )
 }
 

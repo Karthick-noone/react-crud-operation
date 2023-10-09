@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import HeaderPage from './headermenu';
 import axios from 'axios';
+import MainLayout from './mainlayout';
 
 function Edit({ current, lists, setList, handleUpdate, handleDelete }) {
   const handleInput = (e) => {
@@ -119,6 +120,7 @@ function Viewdata() {
   const year = new Date();
 
   return (
+    <MainLayout>
     <div>
       <div style={containerStyle} class="bgcolor">
         <HeaderPage />
@@ -135,7 +137,7 @@ function Viewdata() {
           </tr>
         </thead>
         <tbody>
-          {lists.map((current) => (
+        {lists.slice().reverse().map((current , index) => (
             updateState === current.id ? (
               <Edit
                 key={current.id}
@@ -147,7 +149,7 @@ function Viewdata() {
               />
             ) : (
               <tr key={current.id}>
-                <td style={tdStyle}>{current.id}</td>
+                <td style={tdStyle}>{index + 1}</td>
                 <td style={tdStyle}>{current.Username}</td>
                 <td style={tdStyle}>{current.Password}</td>
                 <td style={tdStyle}>{current.email}</td>
@@ -166,6 +168,7 @@ function Viewdata() {
       Copyrights &copy;{year.getFullYear()}
       </div>
     </div>
+    </MainLayout>
   );
 }
 

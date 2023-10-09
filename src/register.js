@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HeaderPage from './headermenu';
 import myimages from './imgs/logo192.png';
 import axios from 'axios';
+import MainLayout from './mainlayout';
 
 function Register() {
   const [values, setValues] = useState({
@@ -48,17 +49,17 @@ function Register() {
 
     // Basic email validation (you can customize this)
     if (!email || !email.match(/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/)) {
-      newErrors.email = 'Invalid email address';
+      newErrors.email = <span style={{ color: 'red' }}>Invalid email address</span>;
     }
 
     // Basic phone number validation (you can customize this)
     if (!number || !number.match(/^\d{10}$/)) {
-      newErrors.number = 'Invalid phone number (10 digits)';
+      newErrors.number = <span style={{ color: 'red' }}>Invalid phone number (10 digits)</span>;
     }
 
     // Basic password validation (you can customize this)
     if (!password || password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = <span style={{ color: 'red' }}>Password must be at least 6 characters</span>;
     }
 
     // If there are errors, don't submit the form
@@ -133,6 +134,7 @@ function Register() {
   const year = new Date();
 
   return (
+    <MainLayout>
     <div>
       <div style={containerStyle} className="bgcolor">
         <HeaderPage />
@@ -259,6 +261,7 @@ function Register() {
       Copyrights &copy;{year.getFullYear()}
       </div>
     </div>
+    </MainLayout>
   );
 }
 

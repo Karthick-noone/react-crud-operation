@@ -16,7 +16,8 @@ const App = () => {    //or function App(){
   return (
    <BrowserRouter>
     <Routes>
-    <Route index element={<HomePage />} />
+    
+   {/*  <Route index element={<HomePage />} /> */}
     <Route path='home' element={<HomePage />} />
     <Route path='gallery' element={<Gallery />} />
     <Route path='about' element={<AboutPage />} />
